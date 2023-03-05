@@ -7,13 +7,12 @@ namespace WebApplication1.Services;
 public class SongServices
 {
     private readonly IMongoCollection<Song> _collection;
-
-    public SongServices(IOptions<SongDBSettings> songServices)
+    public SongServices(IOptions<SongDBSettings> songDBSettings)
     {
-        var mongoClient = new MongoClient(songServices.Value.ConnectionString);
-        var mongoDatabase = mongoClient.GetDatabase(songServices.Value.DatabaseName);
+        var mongoClient = new MongoClient(songDBSettings.Value.ConnectionString);
+        var mongoDatabase = mongoClient.GetDatabase(songDBSettings.Value.DatabaseName);
 
-        _collection = mongoDatabase.GetCollection<Song>(songServices.Value.SongCollectionName);
+        _collection = mongoDatabase.GetCollection<Song>(songDBSettings.Value.SongCollectionName);
     }
     
     public async Task<List<Song>> GetAsync() =>
@@ -22,8 +21,8 @@ public class SongServices
         await _collection.Find(x => x.Id == id).FirstOrDefaultAsync();
     public async Task CreateAsync(Song song) =>
         await _collection.InsertOneAsync(song);
-    public async Task UpdateAsync(string id, Song song) =>
-        await _collection.ReplaceOneAsync(x => x.Id == id, song);
+    public async Task UpdateAsync(string id, Song updatedSong) =>
+        await _collection.ReplaceOneAsync(x => x.Id == id, updatedSong);
     public async Task RemoveAsync(string id) =>
         await _collection.DeleteOneAsync(x => x.Id == id);
 }
