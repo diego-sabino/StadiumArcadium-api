@@ -5,7 +5,6 @@ namespace WebApplication1.Models;
 
 public class Song
 {
-    [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string Id { get; set; }
     
