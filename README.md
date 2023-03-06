@@ -1,4 +1,4 @@
-# rhcp API
+# StadiumArcadium API
 Este é um repositório contendo uma API construída em ASP.NET que fornece informações sobre a banda Red Hot Chili Peppers. A API consome dados de uma base de dados e expõe endpoints para permitir que usuários obtenham informações sobre álbuns, músicas e membros da banda.
 
 ## Instalação
