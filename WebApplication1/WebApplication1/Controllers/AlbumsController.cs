@@ -3,41 +3,41 @@ using WebApplication1.Models;
 using WebApplication1.Services;
 
 namespace WebApplication1.Controllers;
-[Route("api/songs")]
+[Route("api/albums")]
 [ApiController]
-public class SongController : ControllerBase
+public class AlbumController : ControllerBase
 {
     private readonly AlbumServices _albumServices;
 
-    public SongController(AlbumServices albumServices)
+    public AlbumController(AlbumServices albumServices)
     {
         _albumServices = albumServices; 
     }
 
     [HttpGet]
-    public async Task<List<Album>> GetSongs() =>
+    public async Task<List<Album>> GetAlbum() =>
         await _albumServices.GetAsync();
 
     [HttpPost]
-    public async Task<Album> PostSong(Album album)
+    public async Task<Album> PostAlbum(Album album)
     {
         await _albumServices.CreateAsync(album);
         return album;
     }
     
     [HttpGet("{id:length(24)}")]
-    public async Task<Album> GetSong(string id) =>
+    public async Task<Album> GetAlbum(string id) =>
         await _albumServices.GetAsync(id);
     
     [HttpPut("{id:length(24)}")]
     public async Task<IActionResult> Update(string id, Album updatedAlbum) {
-        var song = await _albumServices.GetAsync(id);
+        var album = await _albumServices.GetAsync(id);
 
-        if (song is null) {
+        if (album is null) {
             return NotFound();
         }
 
-        updatedAlbum.Id = song.Id;
+        updatedAlbum.Id = album.Id;
 
         await _albumServices.UpdateAsync(id, updatedAlbum);
 
@@ -45,6 +45,6 @@ public class SongController : ControllerBase
     }
     
     [HttpDelete("{id:length(24)}")]
-    public async Task DeleteSong(string id) =>
+    public async Task DeleteAlbum(string id) =>
         await _albumServices.RemoveAsync(id);
 }

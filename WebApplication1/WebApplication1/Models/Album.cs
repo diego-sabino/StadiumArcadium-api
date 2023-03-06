@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace WebApplication1.Models
 {
-    public class Song
+    public class Album
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

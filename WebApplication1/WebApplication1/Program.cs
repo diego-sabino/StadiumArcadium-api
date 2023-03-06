@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.Configure<SongDBSettings>
     (builder.Configuration.GetSection("DevNetStoreDatabase"));
 
-builder.Services.AddSingleton<SongServices>();
+builder.Services.AddSingleton<AlbumServices>();
 
 builder.Services.AddCors(options =>
 {
