@@ -10,9 +10,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<SongDBSettings>
-    (builder.Configuration.GetSection("DevNetStoreDatabase"));
+    (builder.Configuration.GetSection("DatabaseConnection"));
+
+builder.Services.Configure<AlbumDBSettings>
+    (builder.Configuration.GetSection("DatabaseConnection"));
 
 builder.Services.AddSingleton<SongServices>();
+builder.Services.AddSingleton<AlbumsServices>();
 
 builder.Services.AddCors(options =>
 {
