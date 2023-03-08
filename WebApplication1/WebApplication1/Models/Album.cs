@@ -1,6 +1,6 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using WebApplication1.Services;
+using WebApplication1.Interfaces;
 
 namespace WebApplication1.Models;
 

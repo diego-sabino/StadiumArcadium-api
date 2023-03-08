@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using WebApplication1.Interfaces;
 
 namespace WebApplication1.Controllers
 {
@@ -71,14 +70,5 @@ namespace WebApplication1.Controllers
 
             return NoContent();
         }
-    }
-    
-    public interface IService<T>
-    {
-        Task<List<T>> GetAllAsync();
-        Task<T> GetByIdAsync(string id);
-        Task CreateAsync(T entity);
-        Task UpdateAsync(string id, T entity);
-        Task RemoveAsync(string id);
     }
 }
