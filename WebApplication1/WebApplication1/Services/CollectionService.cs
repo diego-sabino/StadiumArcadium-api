@@ -10,7 +10,7 @@ namespace WebApplication1.Services
     {
         private readonly IMongoCollection<T> _collection;
 
-        public CollectionService(IOptions<DBSettings> dbSettings, string collectionName)
+        protected CollectionService(IOptions<DBSettings> dbSettings, string collectionName)
         {
             var mongoClient = new MongoClient(dbSettings.Value.ConnectionString);
             var mongoDatabase = mongoClient.GetDatabase(dbSettings.Value.DatabaseName);

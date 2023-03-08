@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
 using WebApplication1.Services;
@@ -17,26 +15,38 @@ public class AlbumController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<List<Album>> GetSongs() =>
-        await _albumServices.GetAsync();
+    public async Task<IActionResult> GetAlbums()
+    {
+        var albums = await _albumServices.GetAsync();
+        return Ok(albums);
+    }
 
     [HttpPost]
-    public async Task<Album> PostSong(Album album)
+    public async Task<Album> PostAlbum(Album album)
     {
         await _albumServices.CreateAsync(album);
         return album;
     }
-    
+
     [HttpGet("{id:length(24)}")]
-    public async Task<Album> GetSong(string id) =>
-        await _albumServices.GetAsync(id);
+    public async Task<ActionResult<Album>> GetAlbum(string id)
+    {
+        var album = await _albumServices.GetAsync(id);
+
+        if (album is null)
+        {
+            return NotFound(new { message = "Album not found" });
+        }
+        
+        return Ok(album);
+    }
     
     [HttpPut("{id:length(24)}")]
     public async Task<IActionResult> Update(string id, Album updatedAlbum) {
         var album = await _albumServices.GetAsync(id);
 
         if (album is null) {
-            return NotFound();
+            return NotFound(new { message = "Album not found" });
         }
 
         updatedAlbum.Id = album.Id;
@@ -45,8 +55,17 @@ public class AlbumController : ControllerBase
 
         return NoContent();
     }
-    
+
     [HttpDelete("{id:length(24)}")]
-    public async Task DeleteSong(string id) =>
+    public async Task<IActionResult> DeleteAlbum(string id)
+    {
+        var album = await _albumServices.GetAsync(id);
+
+        if (album is null) {
+            return NotFound(new { message = "Album not found" });
+        }
+        
         await _albumServices.RemoveAsync(id);
+        return NoContent();
+    }
 }
