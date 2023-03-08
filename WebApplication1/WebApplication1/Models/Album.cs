@@ -1,9 +1,10 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using WebApplication1.Services;
 
 namespace WebApplication1.Models;
 
-public class Album
+public class Album : IEntity
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]

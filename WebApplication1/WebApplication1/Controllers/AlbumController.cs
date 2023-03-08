@@ -9,9 +9,9 @@ namespace WebApplication1.Controllers;
 [ApiController]
 public class AlbumController : ControllerBase
 {
-    private readonly AlbumsServices _albumServices;
+    private readonly AlbumServices _albumServices;
 
-    public AlbumController(AlbumsServices albumServices)
+    public AlbumController(AlbumServices albumServices)
     {
         _albumServices = albumServices; 
     }

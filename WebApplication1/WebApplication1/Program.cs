@@ -13,7 +13,7 @@ builder.Services.Configure<DBSettings>
     (builder.Configuration.GetSection("DatabaseConnection"));
 
 builder.Services.AddSingleton<SongServices>();
-builder.Services.AddSingleton<AlbumsServices>();
+builder.Services.AddSingleton<AlbumServices>();
 
 
 builder.Services.AddCors(options =>
