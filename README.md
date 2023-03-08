@@ -19,4 +19,4 @@ A API fornece os seguintes endpoints:
 * /api/songs: Retorna uma lista de todas as músicas do Red Hot Chili Peppers.
 * /api/songs/{id}: Retorna informações sobre uma música específica.
 ## Contribuição
-Se você deseja contribuir para o projeto, sinta-se à vontade para fazer um fork do repositório e criar uma pull request com suas alterações. Certifique-se de que seus commits sejam descritivos e que sua contribuição seja útil para o projeto.
+Se você deseja contribuir para o projeto, sinta-se à vontade para fazer um fork do repositório e criar uma pull request com suas alterações.
