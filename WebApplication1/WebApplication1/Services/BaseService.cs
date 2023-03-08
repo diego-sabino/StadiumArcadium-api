@@ -1,16 +1,15 @@
 using Microsoft.Extensions.Options;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
+using WebApplication1.Interfaces;
 using WebApplication1.Models;
 
 namespace WebApplication1.Services
 {
-    public class CollectionService<T> where T : IEntity
+    public class BaseService<T> where T : IEntity
     {
         private readonly IMongoCollection<T> _collection;
 
-        protected CollectionService(IOptions<DBSettings> dbSettings, string collectionName)
+        protected BaseService(IOptions<DBSettings> dbSettings, string collectionName)
         {
             var mongoClient = new MongoClient(dbSettings.Value.ConnectionString);
             var mongoDatabase = mongoClient.GetDatabase(dbSettings.Value.DatabaseName);
@@ -28,12 +27,5 @@ namespace WebApplication1.Services
             await _collection.ReplaceOneAsync(x => x.Id == id, updatedItem);
         public async Task RemoveAsync(string id) =>
             await _collection.DeleteOneAsync(x => x.Id == id);
-    }
-
-    public interface IEntity
-    {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        string Id { get; set; }
     }
 }
