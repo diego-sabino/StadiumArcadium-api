@@ -9,14 +9,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.Configure<SongDBSettings>
-    (builder.Configuration.GetSection("DatabaseConnection"));
-
-builder.Services.Configure<AlbumDBSettings>
+builder.Services.Configure<DBSettings>
     (builder.Configuration.GetSection("DatabaseConnection"));
 
 builder.Services.AddSingleton<SongServices>();
 builder.Services.AddSingleton<AlbumsServices>();
+
 
 builder.Services.AddCors(options =>
 {

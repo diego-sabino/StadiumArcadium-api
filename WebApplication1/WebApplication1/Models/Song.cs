@@ -1,10 +1,11 @@
 using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using WebApplication1.Services;
 
 namespace WebApplication1.Models
 {
-    public class Song
+    public class Song : IEntity
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

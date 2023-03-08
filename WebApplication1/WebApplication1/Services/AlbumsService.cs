@@ -7,7 +7,8 @@ namespace WebApplication1.Services;
 public class AlbumsServices
 {
     private readonly IMongoCollection<Album> _collection;
-    public AlbumsServices(IOptions<AlbumDBSettings> albumDBSettings)
+    
+    public AlbumsServices(IOptions<DBSettings> albumDBSettings)
     {
         var mongoClient = new MongoClient(albumDBSettings.Value.ConnectionString);
         var mongoDatabase = mongoClient.GetDatabase(albumDBSettings.Value.DatabaseName);
