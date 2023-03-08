@@ -10,7 +10,7 @@ namespace WebApplication1.Services
     {
         private readonly IMongoCollection<T> _collection;
 
-        public CollectionService(IOptions<DBSettings> dbSettings, string collectionName)
+        protected CollectionService(IOptions<DBSettings> dbSettings, string collectionName)
         {
             var mongoClient = new MongoClient(dbSettings.Value.ConnectionString);
             var mongoDatabase = mongoClient.GetDatabase(dbSettings.Value.DatabaseName);
@@ -18,9 +18,9 @@ namespace WebApplication1.Services
             _collection = mongoDatabase.GetCollection<T>(collectionName);
         }
 
-        public async Task<List<T>> GetAsync() =>
+        public async Task<List<T>> GetAllAsync() =>
             await _collection.Find(x => true).ToListAsync();
-        public async Task<T> GetAsync(string id) =>
+        public async Task<T> GetByIdAsync(string id) =>
             await _collection.Find(x => x.Id == id).FirstOrDefaultAsync();
         public async Task CreateAsync(T item) =>
             await _collection.InsertOneAsync(item);
