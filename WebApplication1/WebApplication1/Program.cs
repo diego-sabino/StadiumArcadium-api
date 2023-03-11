@@ -17,6 +17,7 @@ builder.Services.Configure<DBSettings>
 
 builder.Services.AddSingleton<SongServices>();
 builder.Services.AddSingleton<AlbumServices>();
+builder.Services.AddSingleton<MemberServices>();
 
 
 builder.Services.AddCors(options =>
