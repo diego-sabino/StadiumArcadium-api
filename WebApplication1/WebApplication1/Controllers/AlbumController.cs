@@ -5,9 +5,9 @@ using WebApplication1.Services;
 namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
-    public class AlbumsController : BaseController<Album, AlbumServices>
+    public class AlbumController : BaseController<Album, AlbumServices>
     {
-        public AlbumsController(AlbumServices albumService) : base(albumService)
+        public AlbumController(AlbumServices albumService) : base(albumService)
         {
         }
     }
