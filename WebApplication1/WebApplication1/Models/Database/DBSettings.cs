@@ -9,4 +9,6 @@ public class DBSettings
     public string SongCollectionName { get; set; } = null;
     
     public string AlbumCollectionName { get; set; } = null;
+    
+    public string MemberCollectionName { get; set; } = null;
 }
