@@ -4,9 +4,9 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Services;
 
-public class MemberService : BaseService<Member>, IService<Member>
+public class MemberServices : BaseServices<Member>, IService<Member>
 {
-    public MemberService(IOptions<DBSettings> dbSettings)
+    public MemberServices(IOptions<DBSettings> dbSettings)
         : base(dbSettings, dbSettings.Value.MemberCollectionName)
     {
     }

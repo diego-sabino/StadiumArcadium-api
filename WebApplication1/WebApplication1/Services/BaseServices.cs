@@ -7,11 +7,11 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Services
 {
-    public class BaseService<T> where T : IEntity
+    public class BaseServices<T> where T : IEntity
     {
         private readonly IMongoCollection<T> _collection;
 
-        protected BaseService(IOptions<DBSettings> dbSettings, string collectionName)
+        protected BaseServices(IOptions<DBSettings> dbSettings, string collectionName)
         {
             var mongoClient = new MongoClient(dbSettings.Value.ConnectionString);
             var mongoDatabase = mongoClient.GetDatabase(dbSettings.Value.DatabaseName);
